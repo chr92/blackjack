@@ -53,6 +53,7 @@ class Deck {
             for (var j = 0; j < ranks.length; j++)
                 this.cards[j + i * ranks.length] = new Card(ranks[j], suits[i]);
         }
+        this.shuffle(4);
     }
 
     shuffle(times) {
@@ -123,7 +124,6 @@ class Hand {
 var checkForEmptyDeck = function(deck) {
     if (deck.remainingCards() <= 5) {
         deck = new Deck();
-        deck.shuffle(4);
         return deck;
     } else {
         return deck;
@@ -146,4 +146,4 @@ var evaluateGame = function(myHand, dealerHand) {
 }
 
 var deck = new Deck();
-deck.shuffle(4);
+
