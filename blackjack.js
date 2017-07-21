@@ -134,7 +134,7 @@ function evaluateGame(playerHand, dealerHand) {
     var myScore = playerHand.score();
     var dealerScore = dealerHand.score();
     if (myScore > 21) {
-        result = "loss"
+        result = "bust"
     } else if (myScore <= 21 && playerHand.returnHand().length >= 5) {
         result = "win"
     } else if (dealerScore > 21 || myScore === 21 || myScore > dealerScore) {
@@ -212,6 +212,9 @@ function gameOver(result) {
         case "draw":
             $("#gameFeedback p").text("It's a Draw! Play again?");
             break;
+        case "bust":
+            $("#gameFeedback p").text("You're Bust! Play again?");
+            break;
 
     }
 }
@@ -227,9 +230,9 @@ var deck = new Deck();
 $(document).ready(function() {
     var playerHand = new Hand();
     var dealerHand = new Hand();
-    $('#dealer p').text("Dealer's Hand (0)")
     $("#start").click(function() {
         deck = checkForEmptyDeck(deck);
+        $('#dealer p').text("Dealer's Hand");
         toggleControls("game");
         playerHand = new Hand();
         dealerHand = new Hand();
@@ -239,7 +242,7 @@ $(document).ready(function() {
     $("#hit").click(function() {
         playerHand.hit();
         updateHandUI(playerHand, "player");
-        if (playerHand.score() > 21) {
+        if (playerHand.score() > 21 || playerHand.returnHand().length === 5) {
             var result = evaluateGame(playerHand, dealerHand);
             gameOver(result);
         }
