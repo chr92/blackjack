@@ -145,5 +145,101 @@ var evaluateGame = function(myHand, dealerHand) {
     return result;
 }
 
+var toggleControls = function(stage) {
+    if (stage === "game") {
+        $("#gameFeedback p").text("It's your turn");
+        $("#startButton").hide();
+        $("#inGame").show();
+    } else if (stage === "home") {
+        $("#gameFeedback p").text("Click Start Game to begin");
+        $("#startButton").show();
+        $("#inGame").hide();
+    } else if (stage === "dealerTurn") {
+        $("#gameFeedback p").text("Please wait while the dealer plays");
+        $("#startButton").hide();
+        $("#inGame").hide();       
+    }
+}
+
+var updateHandUI = function(handInput, user) {
+    var cards = handInput.returnHand();
+    var cardsHTML = ""
+    var cardsCount = 0;
+    var score = handInput.score();
+    for (var i = 0; i < cards.length; i++) {
+        var suit = cards[i].suit;
+        var name = cards[i].displayValue();
+        if (cardsCount == 0) {
+            cardsHTML += "<div id=\"card\" class=\"first " + suit + "\"><div id=\"value\">" + name + "</div></div>"
+            cardsCount++
+        } else {
+            cardsHTML += "<div id=\"card\" class=" + suit + "\"><div id=\"value\">" + name + "</div></div>"
+            cardsCount++
+        }
+    }
+    if (user == "player") {
+        $('#playerCards').html(cardsHTML);
+        $('#player p').text("Your Hand (" + score + ")")
+    } else if (user == "dealer") {
+        $('#dealerCards').html(cardsHTML);
+        $('#dealer p').text("Dealer's Hand (" + score + ")")
+    }
+}
+
+var dealerPlay = function(dealerHand,playerHand) {
+    while (dealerHand.score() < 17) {
+        dealerHand.hit();
+        updateHandUI(dealerHand,"dealer");
+
+    }
+    var result = evaluateGame(playerHand, dealerHand);
+    gameOver(result);
+}
+
+var gameOver = function(result) {
+    switch (result) {
+        case "win":
+            console.log("win");
+            break;
+        case "loss":
+            console.log("loss");
+            break;
+        case "draw":
+            console.log("draw")
+            break;
+
+    }    
+}
+
+// GAME PLAY
+
 var deck = new Deck();
 
+$("#start").click(function(){
+    var playerHand = new Hand();
+    var dealerHand = new Hand();
+    toggleControls("game");
+    updateHandUI(playerHand,"player");
+    $("#hit").click(function(){
+       playerHand.hit();
+       updateHandUI(playerHand, "player")
+       if (playerHand.score() > 21) {
+            var result = evaluateGame(playerHand, dealerHand);
+            gameOver(result);
+       }
+    });
+    $("#stand").click(function(){
+        toggleControls("dealerTurn");
+        dealerPlay(dealerHand,playerHand);
+    })
+});
+
+
+
+/*
+TODO
+0) Button clicking
+1) User playing flow
+2) Dealer Playing flow
+3) Checking game
+*/

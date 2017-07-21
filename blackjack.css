@@ -40,7 +40,6 @@ a {
 	font-size: 2em;
 	padding-left: 0.4em;
 	padding-top: 0.2em;
-	letter-spacing: 0.1em;
 }
 
 #card.first {
@@ -72,8 +71,8 @@ a {
 	background: white;
 	text-align: center;
 	font-size: 1em;
-	margin-left: 10px;
-	margin-right: 10px;
+	margin-left: 5px;
+	margin-right: 5px;
 }
 
 #playerControls p {
