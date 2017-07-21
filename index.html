@@ -11,30 +11,32 @@
         <div id="cardStack">
         </div>
         <div id="dealer" class="playArea">
-            <p>Dealer's Hand (0)</p>
+            <p>Dealer's Hand (18)</p>
             <div id="dealerCards">
-                <div id="card" class="first">4&spades;</div>
-                <div id="card">4&hearts;</div>
-                <div id="card">4&hearts;</div>
+                <div id="card" class="first S"><div id="value">4&spades;</div></div>
+                <div id="card" class="H"><div id="value">4&hearts;</div></div>
+                <div id="card" class="H"><div id="value">10&hearts;</div></div>
             </div>
         </div>
         <div id="player" class="playArea">
-            <p>Your Hand (0)</p>
+            <p>Your Hand (21)</p>
             <div id="playerCards">
-                <div id="card" class="first">4&spades;</div>
-                <div id="card">4&hearts;</div>
+                <div id="card" class="first S"><div id="value">A&spades;</div></div>
+                <div id="card" class="D"><div id="value">K&diams;</div></div>
             </div>
         </div>
         <div id="playerControls">
-            <div id="inGame">
-                <button id="hit">Hit me</button>
-                <button id="stand">Stand</button>
+            <div id="gameFeedback">
+                <p>Click Start Game to Begin</p>
             </div>
-            <button id="start">Start Game</button>
+            <div id="inGame">
+                <button id="hit" class="button">Hit me</button>
+                <button id="stand" class="button">Stand</button>
+            </div>
+            <div id="startButton">
+                <button id="start" class="button">Start Game</button>
+            </div>
         </div>
-    </div>
-    <div id="footer">
-        <p id="author">Made by @chendriksen</p>
     </div>
 </body>
 
