@@ -149,7 +149,7 @@ function evaluateGame(playerHand, dealerHand) {
 
 function toggleControls(stage) {
     if (stage === "game") {
-        $("#gameFeedback p").text("It's your turn");
+        $("#gameFeedback p").text("It's your turn...");
         $("#startButton").hide();
         $("#inGame").show();
     } else if (stage === "home") {
@@ -188,7 +188,6 @@ function updateHandUI(handInput, user) {
     }
 }
 
-// problematic
 function dealerPlay(playerHand, dealerHand) {
     updateHandUI(dealerHand, "dealer");
     while (dealerHand.score() < 17) {
@@ -199,33 +198,41 @@ function dealerPlay(playerHand, dealerHand) {
     gameOver(result);
 }
 
+function updateScores(){
+    $("#footer").html("<p>Scoreboard</br>You "+ playerWins +" - Dealer " + dealerWins + "</p>");
+}
+
 function gameOver(result) {
     $("#startButton").show();
     $("#inGame").hide();
     switch (result) {
         case "win":
             $("#gameFeedback p").text("You Win! Play again?");
+            playerWins++;
             break;
         case "loss":
             $("#gameFeedback p").text("Dealer Wins! Play again?");
+            dealerWins++;
             break;
         case "draw":
             $("#gameFeedback p").text("It's a Draw! Play again?");
             break;
         case "bust":
             $("#gameFeedback p").text("You're Bust! Play again?");
+            dealerWins++;
             break;
 
     }
+    updateScores();
 }
 
 function clearDealer() {
     $('#dealerCards').html("");
 }
 
-// GAME PLAY
-
 var deck = new Deck();
+var playerWins = 0;
+var dealerWins = 0;
 
 $(document).ready(function() {
     var playerHand = new Hand();
@@ -242,7 +249,7 @@ $(document).ready(function() {
     $("#hit").click(function() {
         playerHand.hit();
         updateHandUI(playerHand, "player");
-        if (playerHand.score() > 21 || playerHand.returnHand().length === 5) {
+        if (playerHand.score() > 21 || playerHand.returnHand().length  === 5) {
             var result = evaluateGame(playerHand, dealerHand);
             gameOver(result);
         }
@@ -252,9 +259,3 @@ $(document).ready(function() {
         dealerPlay(playerHand, dealerHand);
     })
 });
-
-
-
-/*
-WEIRD BUGS
-*/

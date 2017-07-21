@@ -16,8 +16,6 @@ a {
 	width: 491px;
 	height: 250px;
 	margin: 10px auto;
-	/* background-color: #476148;
-	border-radius: 10px; */
 }
 
 .playArea p {
@@ -59,7 +57,7 @@ a {
 	background-color: #476148;
 	border-radius: 10px;
 	width: 491px;
-	height: 100px;
+	height: auto;
 	margin: 20px auto;
 }
 
@@ -72,9 +70,11 @@ a {
 	color: black;
 	background: white;
 	text-align: center;
-	font-size: 1em;
 	margin-left: 5px;
 	margin-right: 5px;
+	margin-bottom: 20px;
+	padding: 0.5em 1.2em 0.5em 1.2em;
+	font-size: 0.8em;
 }
 
 #playerControls p {
@@ -83,4 +83,13 @@ a {
 
 #playerControls #inGame {
 	display:none;
+}
+
+#gameFeedback p {
+	font-size: 1.1em;
+}
+
+#footer p {
+	text-align: center;
+	font-size: 0.8em;
 }
