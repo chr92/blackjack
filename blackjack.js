@@ -84,7 +84,7 @@ class Hand {
     };
 
     returnHand() {
-        return cards;
+        return this.cards;
     };
 
     score() {
@@ -120,17 +120,30 @@ class Hand {
     };
 };
 
-// TODO TEST THIS FUNCTION
-function checkForEmptyDeck(deck) {
+var checkForEmptyDeck = function(deck) {
     if (deck.remainingCards() <= 5) {
         deck = new Deck();
+        deck.shuffle(4);
         return deck;
     } else {
         return deck;
     }
 }
 
+var evaluateGame = function(myHand, dealerHand) {
+    if (myHand.score() > 21 || dealerHand.score() === 21) {
+        result = "loss"
+    } else if (myHand.score() <= 21 && myHand.returnHand().length >= 5) {
+        result = "win"
+    } else if (dealerHand.score() > 21 || myHand.score() === 21 || myHand.score() > dealerHand.score()) {
+        result = "win"
+    } else if (dealerHand.score() > myHand.score()) {
+        result = "lose"
+    } else if (dealerHand.score() === myHand.score()) {
+        result = "draw"
+    }
+    return result;
+}
+
 var deck = new Deck();
 deck.shuffle(4);
-
-
