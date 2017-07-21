@@ -28,16 +28,16 @@ class Card {
         var suitIcon = '';
         switch (this.suit) {
             case "D":
-                suitIcon = "&diams;";
+                suitIcon = "♦";
                 break;
             case "H":
-                suitIcon = "&hearts;";
+                suitIcon = "♥";
                 break;
             case "C":
-                suitIcon = "&clubs;";
+                suitIcon = "♣";
                 break;
             case "S":
-                suitIcon = "&spades;";
+                suitIcon = "♠";
 
         }
         return (this.name + " " + suitIcon);

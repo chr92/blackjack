@@ -7,6 +7,7 @@ Rough plan
     - Get name
     - Get suit
     - Get value
+    - Get display value (e.g. A♠)
 
 - Deck
     - Create
@@ -14,7 +15,7 @@ Rough plan
     - Give Card
 
 - Hand
-    - Start with 2 cards
+    - Create (with 2 cards)
     - Hit Me
     - Return cards
     - Return score
