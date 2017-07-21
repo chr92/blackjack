@@ -99,7 +99,7 @@ class Hand {
             score += cardValue;
         }
 
-        while (score > 21 && aceCount > 0) {
+        while (aceCount > 0 && score > 21) {
             score -= 10;
             aceCount -= 1;
         }
@@ -107,7 +107,7 @@ class Hand {
         return score;
     };
 
-    getCard() {
+    hit() {
         this.cards.push(deck.deal());
     };
 
@@ -124,5 +124,3 @@ class Hand {
 
 var deck = new Deck();
 deck.shuffle(4);
-var hand = new Hand();
-hand.score();

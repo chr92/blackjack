@@ -30,3 +30,21 @@ Rough plan
         - Create computer a hand
         - Hit until 17 reached / bust
     - Calculate winner
+
+- Interface
+	- Player
+		- Show hand
+		- Update hand
+		- Show controls
+		- Show score
+		- Update score
+	- Computer
+		- Show hand
+		- Update hand
+		- Show controls
+		- Show score
+		- Update score
+	- Cards
+		- Styling
+		- Arrangement
+		
