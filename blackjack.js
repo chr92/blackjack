@@ -120,7 +120,17 @@ class Hand {
     };
 };
 
-// GAME
+// TODO TEST THIS FUNCTION
+function checkForEmptyDeck(deck) {
+    if (deck.remainingCards() <= 5) {
+        deck = new Deck();
+        return deck;
+    } else {
+        return deck;
+    }
+}
 
 var deck = new Deck();
 deck.shuffle(4);
+
+
