@@ -40,7 +40,7 @@ class Card {
                 suitIcon = "♠";
 
         }
-        return (this.name + " " + suitIcon);
+        return (this.name + suitIcon);
     }
 }
 
@@ -76,20 +76,23 @@ class Deck {
     }
 }
 
-var Hand = function() {
-    var cards = [];
-    cards.push(deck.deal(), deck.deal());
+class Hand {
 
-    this.returnHand = function() {
+    constructor() {
+        this.cards = [];
+        this.cards.push(deck.deal(), deck.deal());
+    };
+
+    returnHand() {
         return cards;
     };
 
-    this.score = function() {
+    score() {
         var score = 0;
         var cardValue = 0;
         var aceCount = 0;
-        for (var i = 0; i < cards.length; i++) {
-            cardValue = cards[i].value();
+        for (var i = 0; i < this.cards.length; i++) {
+            cardValue = this.cards[i].value();
             if (cardValue == 11) {
                 aceCount += 1;
             }
@@ -104,14 +107,14 @@ var Hand = function() {
         return score;
     };
 
-    this.getCard = function() {
-        cards.push(deck.deal());
+    getCard() {
+        this.cards.push(deck.deal());
     };
 
-    this.showCards = function() {
+    showCards() {
         var currentHand = [];
-        for (var i = cards.length - 1; i >= 0; i--) {
-            currentHand.push(cards[i].displayValue());
+        for (var i = this.cards.length - 1; i >= 0; i--) {
+            currentHand.push(this.cards[i].displayValue());
         }
         return currentHand;
     };
@@ -121,6 +124,5 @@ var Hand = function() {
 
 var deck = new Deck();
 deck.shuffle(4);
-
-
-
+var hand = new Hand();
+hand.score();
