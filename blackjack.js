@@ -121,8 +121,8 @@ class Hand {
     };
 };
 
-var checkForEmptyDeck = function(deck) {
-    if (deck.remainingCards() <= 5) {
+function checkForEmptyDeck(deck) {
+    if (deck.remainingCards() <= 10) {
         deck = new Deck();
         return deck;
     } else {
@@ -130,22 +130,24 @@ var checkForEmptyDeck = function(deck) {
     }
 }
 
-var evaluateGame = function(myHand, dealerHand) {
-    if (myHand.score() > 21 || dealerHand.score() === 21) {
+function evaluateGame(playerHand, dealerHand) {
+    var myScore = playerHand.score();
+    var dealerScore = dealerHand.score();
+    if (myScore > 21) {
         result = "loss"
-    } else if (myHand.score() <= 21 && myHand.returnHand().length >= 5) {
+    } else if (myScore <= 21 && playerHand.returnHand().length >= 5) {
         result = "win"
-    } else if (dealerHand.score() > 21 || myHand.score() === 21 || myHand.score() > dealerHand.score()) {
+    } else if (dealerScore > 21 || myScore === 21 || myScore > dealerScore) {
         result = "win"
-    } else if (dealerHand.score() > myHand.score()) {
-        result = "lose"
-    } else if (dealerHand.score() === myHand.score()) {
+    } else if (dealerScore > myScore) {
+        result = "loss"
+    } else if (dealerScore === myScore) {
         result = "draw"
     }
     return result;
 }
 
-var toggleControls = function(stage) {
+function toggleControls(stage) {
     if (stage === "game") {
         $("#gameFeedback p").text("It's your turn");
         $("#startButton").hide();
@@ -157,11 +159,11 @@ var toggleControls = function(stage) {
     } else if (stage === "dealerTurn") {
         $("#gameFeedback p").text("Please wait while the dealer plays");
         $("#startButton").hide();
-        $("#inGame").hide();       
+        $("#inGame").hide();
     }
 }
 
-var updateHandUI = function(handInput, user) {
+function updateHandUI(handInput, user) {
     var cards = handInput.returnHand();
     var cardsHTML = ""
     var cardsCount = 0;
@@ -186,60 +188,70 @@ var updateHandUI = function(handInput, user) {
     }
 }
 
-var dealerPlay = function(dealerHand,playerHand) {
+// problematic
+function dealerPlay(playerHand, dealerHand) {
+    updateHandUI(dealerHand, "dealer");
     while (dealerHand.score() < 17) {
         dealerHand.hit();
-        updateHandUI(dealerHand,"dealer");
-
-    }
+        updateHandUI(dealerHand, "dealer");
+    };
     var result = evaluateGame(playerHand, dealerHand);
     gameOver(result);
 }
 
-var gameOver = function(result) {
+function gameOver(result) {
+    $("#startButton").show();
+    $("#inGame").hide();
     switch (result) {
         case "win":
-            console.log("win");
+            $("#gameFeedback p").text("You Win! Play again?");
             break;
         case "loss":
-            console.log("loss");
+            $("#gameFeedback p").text("Dealer Wins! Play again?");
             break;
         case "draw":
-            console.log("draw")
+            $("#gameFeedback p").text("It's a Draw! Play again?");
             break;
 
-    }    
+    }
+}
+
+function clearDealer() {
+    $('#dealerCards').html("");
 }
 
 // GAME PLAY
 
 var deck = new Deck();
 
-$("#start").click(function(){
+$(document).ready(function() {
     var playerHand = new Hand();
     var dealerHand = new Hand();
-    toggleControls("game");
-    updateHandUI(playerHand,"player");
-    $("#hit").click(function(){
-       playerHand.hit();
-       updateHandUI(playerHand, "player")
-       if (playerHand.score() > 21) {
+    $('#dealer p').text("Dealer's Hand (0)")
+    $("#start").click(function() {
+        deck = checkForEmptyDeck(deck);
+        toggleControls("game");
+        playerHand = new Hand();
+        dealerHand = new Hand();
+        updateHandUI(playerHand, "player");
+        clearDealer();
+    });
+    $("#hit").click(function() {
+        playerHand.hit();
+        updateHandUI(playerHand, "player");
+        if (playerHand.score() > 21) {
             var result = evaluateGame(playerHand, dealerHand);
             gameOver(result);
-       }
+        }
     });
-    $("#stand").click(function(){
+    $("#stand").click(function() {
         toggleControls("dealerTurn");
-        dealerPlay(dealerHand,playerHand);
+        dealerPlay(playerHand, dealerHand);
     })
 });
 
 
 
 /*
-TODO
-0) Button clicking
-1) User playing flow
-2) Dealer Playing flow
-3) Checking game
+WEIRD BUGS
 */
