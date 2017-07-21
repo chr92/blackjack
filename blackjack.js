@@ -199,7 +199,8 @@ function dealerPlay(playerHand, dealerHand) {
 }
 
 function updateScores(){
-    $("#footer").html("<p>Scoreboard</br>You "+ playerWins +" - Dealer " + dealerWins + "</p>");
+    $('#scores').show();
+    $("#scores").html("<p>Previous Wins</br>You "+ playerWins +" - Dealer " + dealerWins + "</p>");
 }
 
 function gameOver(result) {
