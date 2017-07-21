@@ -190,7 +190,7 @@ function updateHandUI(handInput, user) {
 
 function dealerPlay(playerHand, dealerHand) {
     updateHandUI(dealerHand, "dealer");
-    while (dealerHand.score() < 17) {
+    while (dealerHand.score() <= 17) {
         dealerHand.hit();
         updateHandUI(dealerHand, "dealer");
     };
