@@ -1,0 +1,48 @@
+body {
+	background-color: #477148;
+}
+
+p {
+	color: white;
+	font-family: Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif;
+}
+
+.playArea {
+	width: 491px;
+	height: 250px;
+	margin: 10px auto;
+}
+
+.playArea p {
+	padding-top: 0.6em;
+	padding-right: 1em;
+	margin: 0;
+	text-align: right;
+}
+
+#card {
+	background-color: white;
+	height: 200px;
+	width: 142.85px;
+	border-radius: 10px;
+	margin: 10px;
+	margin-left: -75px;
+	display: inline-block;
+	box-shadow: 1px 1px 5px black;
+}
+
+#card.first {
+	margin-left: 10px;
+}
+
+#playerControls {
+	background-color: #476148;
+	border-radius: 10px;
+	width: 500px;
+	height: 100px;
+	margin: 20px auto;
+}
+
+#footer {
+	text-align: center;
+}
