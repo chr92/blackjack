@@ -149,6 +149,7 @@ function evaluateGame(playerHand, dealerHand) {
 
 function toggleControls(stage) {
     if (stage === "game") {
+        $('#dealer p').text("Dealer's Hand");
         $("#gameFeedback p").text("It's your turn...");
         $("#startButton").hide();
         $("#inGame").show();
@@ -240,7 +241,6 @@ $(document).ready(function() {
     var dealerHand = new Hand();
     $("#start").click(function() {
         deck = checkForEmptyDeck(deck);
-        $('#dealer p').text("Dealer's Hand");
         toggleControls("game");
         playerHand = new Hand();
         dealerHand = new Hand();
