@@ -53,7 +53,6 @@ class Deck {
             for (var j = 0; j < ranks.length; j++)
                 this.cards[j + i * ranks.length] = new Card(ranks[j], suits[i]);
         }
-        this.shuffle(4);
     }
 
     shuffle(times) {
@@ -122,8 +121,9 @@ class Hand {
 };
 
 function checkForEmptyDeck(deck) {
-    if (deck.remainingCards() <= 10) {
+    if (deck.remainingCards() <= 9) {
         deck = new Deck();
+        deck.shuffle(4);
         return deck;
     } else {
         return deck;
@@ -148,7 +148,8 @@ function evaluateGame(playerHand, dealerHand) {
 }
 
 function toggleControls(stage) {
-    if (stage === "game") {
+    if (stage === "newGame") {
+        $('#dealerCards').html("");
         $('#dealer p').text("Dealer's Hand");
         $("#gameFeedback p").text("It's your turn...");
         $("#startButton").hide();
@@ -228,25 +229,24 @@ function gameOver(result) {
     updateScores();
 }
 
-function clearDealer() {
-    $('#dealerCards').html("");
-}
-
 var deck = new Deck();
+deck.shuffle(4);
 var playerWins = 0;
 var dealerWins = 0;
 
 $(document).ready(function() {
+
     var playerHand = new Hand();
     var dealerHand = new Hand();
+
     $("#start").click(function() {
+        toggleControls("newGame");
         deck = checkForEmptyDeck(deck);
-        toggleControls("game");
         playerHand = new Hand();
         dealerHand = new Hand();
         updateHandUI(playerHand, "player");
-        clearDealer();
     });
+
     $("#hit").click(function() {
         playerHand.hit();
         updateHandUI(playerHand, "player");
@@ -255,6 +255,7 @@ $(document).ready(function() {
             gameOver(result);
         }
     });
+
     $("#stand").click(function() {
         toggleControls("dealerTurn");
         dealerPlay(playerHand, dealerHand);
