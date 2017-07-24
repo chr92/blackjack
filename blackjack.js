@@ -149,7 +149,7 @@ function evaluateGame(playerHand, dealerHand) {
 
 function toggleControls(stage) {
     if (stage === "newGame") {
-        $('#dealerCards').html("");
+        $('#dealerCards').html("<div id='card' class='first turnedover'><div id='inner'></div></div><div id='card' class='turnedover'><div id='inner'></div></div>");
         $('#dealer p').text("Dealer's Hand");
         $("#gameFeedback p").text("It's your turn...");
         $("#startButton").hide();

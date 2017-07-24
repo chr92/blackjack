@@ -43,6 +43,19 @@ a {
 	padding-top: 0.2em;
 }
 
+#inner {
+	width: 141.42;
+	height: 210px;
+	margin: 15px;
+	background: repeating-linear-gradient(
+	  45deg,
+	  red,
+	  red 10px,
+	  white 10px,
+	  white 20px
+	);
+}
+
 #card.first {
 	margin-left: 10px;
 }

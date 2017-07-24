@@ -1,6 +1,7 @@
 BlackJack game for Codeworks entrance test
 
 TODO
+[x] Card backgrounds / better start UI
 [] Refactor code
 [] Review code
 [] Try to break code
