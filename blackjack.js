@@ -81,11 +81,11 @@ class Hand {
     constructor() {
         this.cards = [];
         this.cards.push(deck.deal(), deck.deal());
-    };
+    }
 
     returnHand() {
         return this.cards;
-    };
+    }
 
     score() {
         var score = 0;
@@ -105,11 +105,11 @@ class Hand {
         }
 
         return score;
-    };
+    }
 
     hit() {
         this.cards.push(deck.deal());
-    };
+    }
 
     showCards() {
         var currentHand = [];
@@ -117,8 +117,8 @@ class Hand {
             currentHand.push(this.cards[i].displayValue());
         }
         return currentHand;
-    };
-};
+    }
+}
 
 function checkForEmptyDeck(deck) {
     if (deck.remainingCards() <= 9) {
@@ -133,16 +133,17 @@ function checkForEmptyDeck(deck) {
 function evaluateGame(playerHand, dealerHand) {
     var myScore = playerHand.score();
     var dealerScore = dealerHand.score();
+    var result = "";
     if (myScore > 21) {
-        result = "bust"
+        result = "bust";
     } else if (myScore <= 21 && playerHand.returnHand().length >= 5) {
-        result = "win"
+        result = "win";
     } else if (dealerScore > 21 || myScore === 21 || myScore > dealerScore) {
-        result = "win"
+        result = "win";
     } else if (dealerScore > myScore) {
-        result = "loss"
+        result = "loss";
     } else if (dealerScore === myScore) {
-        result = "draw"
+        result = "draw";
     }
     return result;
 }
@@ -167,26 +168,26 @@ function toggleControls(stage) {
 
 function updateHandUI(handInput, user) {
     var cards = handInput.returnHand();
-    var cardsHTML = ""
+    var cardsHTML = "";
     var cardsCount = 0;
     var score = handInput.score();
     for (var i = 0; i < cards.length; i++) {
         var suit = cards[i].suit;
         var name = cards[i].displayValue();
         if (cardsCount == 0) {
-            cardsHTML += "<div id=\"card\" class=\"first " + suit + "\"><div id=\"value\">" + name + "</div></div>"
-            cardsCount++
+            cardsHTML += "<div id=\"card\" class=\"first " + suit + "\"><div id=\"value\">" + name + "</div></div>";
+            cardsCount++;
         } else {
-            cardsHTML += "<div id=\"card\" class=" + suit + "\"><div id=\"value\">" + name + "</div></div>"
-            cardsCount++
+            cardsHTML += "<div id=\"card\" class=" + suit + "\"><div id=\"value\">" + name + "</div></div>";
+            cardsCount++;
         }
     }
     if (user == "player") {
         $('#playerCards').html(cardsHTML);
-        $('#player p').text("Your Hand (" + score + ")")
+        $('#player p').text("Your Hand (" + score + ")");
     } else if (user == "dealer") {
         $('#dealerCards').html(cardsHTML);
-        $('#dealer p').text("Dealer's Hand (" + score + ")")
+        $('#dealer p').text("Dealer's Hand (" + score + ")");
     }
 }
 
@@ -195,7 +196,7 @@ function dealerPlay(playerHand, dealerHand) {
     while (dealerHand.score() <= 17) {
         dealerHand.hit();
         updateHandUI(dealerHand, "dealer");
-    };
+    }
     var result = evaluateGame(playerHand, dealerHand);
     gameOver(result);
 }
@@ -259,5 +260,5 @@ $(document).ready(function() {
     $("#stand").click(function() {
         toggleControls("dealerTurn");
         dealerPlay(playerHand, dealerHand);
-    })
+    });
 });
