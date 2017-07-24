@@ -10,5 +10,5 @@ TODO
 
 STRETCH TODOS
 
-[] Make it Mobile Friendly?!
-[] Refactor Again (HTML in JavaScript should go I think...)
+- [] Make it Mobile Friendly?!
+- [] Refactor Again (HTML in JavaScript should go I think...)
