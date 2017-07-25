@@ -43,7 +43,7 @@ a {
 	padding-top: 0.2em;
 }
 
-#inner {
+#card #inner {
 	width: 141.42;
 	height: 210px;
 	margin: 15px;
@@ -74,9 +74,6 @@ a {
 	height: auto;
 	margin: 10px auto;
 	padding: 0.2em;
-}
-
-#playerControls {
 	text-align: center;
 }
 
