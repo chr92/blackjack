@@ -23,6 +23,12 @@
             a.appendChild(r);
         })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
     </script>
+    
+    <script>
+        function testFunction() {
+            console.log("Hello World");
+        }
+    </script>
 </head>
 
 <body>
@@ -56,7 +62,7 @@
                 <button id="stand" class="button">Stand</button>
             </div>
             <div id="startButton">
-                <button id="start" class="button">Start Game</button>
+                <button id="start" class="button" onLoad="testFunction()">Start Game</button>
             </div>
         </div>
         <div id="scores">
