@@ -201,9 +201,9 @@ function dealerPlay(playerHand, dealerHand) {
     gameOver(result);
 }
 
-function updateScores(){
-    $('#scores').show();
-    $("#scores").html("<p>Previous Wins</br>You "+ playerWins +" - Dealer " + dealerWins + "</p>");
+function updateScores() {
+    $("#scores").show()
+    $("#scores").html("<p>Lifetime Score</br>You " + playerWins + " - Dealer " + dealerWins + "</p>");
 }
 
 function gameOver(result) {
@@ -213,10 +213,12 @@ function gameOver(result) {
         case "win":
             $("#gameFeedback p").text("You Win! Play again?");
             playerWins++;
+            localStorage.setItem('playerScore', playerWins);
             break;
         case "loss":
             $("#gameFeedback p").text("Dealer Wins! Play again?");
             dealerWins++;
+            localStorage.setItem('dealerScore', dealerWins);
             break;
         case "draw":
             $("#gameFeedback p").text("It's a Draw! Play again?");
@@ -235,12 +237,26 @@ deck.shuffle(4);
 var playerWins = 0;
 var dealerWins = 0;
 
-$(document).ready(function() {
+if (localStorage.getItem("playerScore") === null) {
+    localStorage.setItem('playerScore', playerWins);
+} else {
+    playerWins = localStorage.getItem("playerScore");
+    updateScores()
+}
+
+if (localStorage.getItem("dealerScore") === null) {
+    localStorage.setItem('dealerScore', dealerWins);
+} else {
+    dealerWins = localStorage.getItem("dealerScore");
+    updateScores()
+}
+
+$(document).ready(function () {
 
     var playerHand = new Hand();
     var dealerHand = new Hand();
 
-    $("#start").click(function() {
+    $("#start").click(function () {
         toggleControls("newGame");
         deck = checkForEmptyDeck(deck);
         playerHand = new Hand();
@@ -248,16 +264,16 @@ $(document).ready(function() {
         updateHandUI(playerHand, "player");
     });
 
-    $("#hit").click(function() {
+    $("#hit").click(function () {
         playerHand.hit();
         updateHandUI(playerHand, "player");
-        if (playerHand.score() > 21 || playerHand.returnHand().length  === 5) {
+        if (playerHand.score() > 21 || playerHand.returnHand().length === 5) {
             var result = evaluateGame(playerHand, dealerHand);
             gameOver(result);
         }
     });
 
-    $("#stand").click(function() {
+    $("#stand").click(function () {
         toggleControls("dealerTurn");
         dealerPlay(playerHand, dealerHand);
     });
