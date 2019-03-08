@@ -6,25 +6,31 @@
     <script type="text/javascript" src="blackjack.js"></script>
     <link rel="stylesheet" href="blackjack.css">
     <link href="favicon.ico" rel="icon" type="image/x-icon" />
-    
+
     <!-- Hotjar Tracking Code for https://chr92.github.io/blackjack/ -->
     <script>
-        (function(h,o,t,j,a,r){
-            h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-            h._hjSettings={hjid:585454,hjsv:6};
-            a=o.getElementsByTagName('head')[0];
-            r=o.createElement('script');r.async=1;
-            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        (function(h, o, t, j, a, r) {
+            h.hj = h.hj || function() {
+                (h.hj.q = h.hj.q || []).push(arguments)
+            };
+            h._hjSettings = {
+                hjid: 585454,
+                hjsv: 6
+            };
+            a = o.getElementsByTagName('head')[0];
+            r = o.createElement('script');
+            r.async = 1;
+            r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
             a.appendChild(r);
-        })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+        })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
+
     </script>
 
 </head>
 
 <body>
     <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PMQDH3X"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PMQDH3X" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
     <div id="game">
         <div id="cardStack">
@@ -32,15 +38,23 @@
         <div id="dealer" class="playArea">
             <p>Dealer's Hand</p>
             <div id="dealerCards">
-                <div id="card" class="first turnedover"><div id="inner"></div></div>
-                <div id="card" class="turnedover"><div id="inner"></div></div>
+                <div id="card" class="first turnedover">
+                    <div id="inner"></div>
+                </div>
+                <div id="card" class="turnedover">
+                    <div id="inner"></div>
+                </div>
             </div>
         </div>
         <div id="player" class="playArea">
             <p>Your Hand</p>
             <div id="playerCards">
-                <div id="card" class="first turnedover"><div id="inner"></div></div>
-                <div id="card" class="turnedover"><div id="inner"></div></div>
+                <div id="card" class="first turnedover">
+                    <div id="inner"></div>
+                </div>
+                <div id="card" class="turnedover">
+                    <div id="inner"></div>
+                </div>
             </div>
         </div>
         <div id="playerControls">
@@ -56,7 +70,7 @@
             </div>
         </div>
         <div id="scores">
-        <p>Previous Wins</br>You 0 - Dealer 0</p>
+            <p>Lifetime Score</br>You 0 - Dealer 0</p>
         </div>
     </div>
 </body>
