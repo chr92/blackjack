@@ -237,11 +237,9 @@ deck.shuffle(4);
 var playerWins = 0;
 var dealerWins = 0;
 
-window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
-
 if (localStorage.getItem("playerScore") === null) {
     localStorage.setItem('playerScore', playerWins);
-    hj('identify', userId, { 
+    window.hj('identify', userId, { 
     lifetimeScore: playerWins
     });
 } else {
@@ -251,7 +249,7 @@ if (localStorage.getItem("playerScore") === null) {
 
 if (localStorage.getItem("dealerScore") === null) {
     localStorage.setItem('dealerScore', dealerWins);
-    hj('identify', userId, { 
+    window.hj('identify', userId, { 
     lifetimeDealerScore: playerWins
     });
 } else {
