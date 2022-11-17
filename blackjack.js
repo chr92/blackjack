@@ -237,6 +237,8 @@ deck.shuffle(4);
 var playerWins = 0;
 var dealerWins = 0;
 
+window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
+
 if (localStorage.getItem("playerScore") === null) {
     localStorage.setItem('playerScore', playerWins);
     hj('identify', userId, { 
