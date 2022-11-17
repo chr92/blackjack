@@ -239,7 +239,7 @@ var dealerWins = 0;
 
 if (localStorage.getItem("playerScore") === null) {
     localStorage.setItem('playerScore', playerWins);
-    window.hj('identify', userId, { 
+    window.hj('identify', null, { 
     lifetimeScore: playerWins
     });
 } else {
@@ -249,7 +249,7 @@ if (localStorage.getItem("playerScore") === null) {
 
 if (localStorage.getItem("dealerScore") === null) {
     localStorage.setItem('dealerScore', dealerWins);
-    window.hj('identify', userId, { 
+    window.hj('identify', null, { 
     lifetimeDealerScore: playerWins
     });
 } else {
